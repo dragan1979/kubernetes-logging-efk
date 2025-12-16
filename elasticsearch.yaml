@@ -1,0 +1,40 @@
+# -----------------------------------------------------------------------------
+# Elasticsearch with ECK (generates certs and credentials automatically)
+# -----------------------------------------------------------------------------
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+metadata:
+  name: elasticsearch-logging
+  namespace: efklog
+spec:
+  version: 8.12.2
+  nodeSets:
+  - name: default
+    count: 1
+    config:
+      node.roles: ["master", "data", "ingest"]
+      node.store.allow_mmap: false
+      xpack.security.enabled: true
+    volumeClaimTemplates:
+    - metadata:
+        name: elasticsearch-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: "immediate-ebs"
+        resources:
+          requests:
+            storage: 10Gi
+    podTemplate:
+      spec:
+        containers:
+        - name: elasticsearch
+          env:
+          - name: ES_JAVA_OPTS
+            value: "-Xms512m -Xmx512m"
+          resources:
+            requests:
+              memory: 1Gi
+              cpu: 500m
+            limits:
+              memory: 1Gi
+              cpu: 500m

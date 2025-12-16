@@ -1,0 +1,16 @@
+# -----------------------------------------------------------------------------
+# Kibana Service (LoadBalancer for external access)
+# -----------------------------------------------------------------------------
+apiVersion: v1
+kind: Service
+metadata:
+  name: kibana-logging-external
+  namespace: efklog
+spec:
+  type: LoadBalancer
+  selector:
+    kibana.k8s.elastic.co/name: kibana-logging
+  ports:
+  - port: 5601
+    targetPort: 5601
+    protocol: TCP

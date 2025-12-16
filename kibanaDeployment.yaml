@@ -1,0 +1,24 @@
+# -----------------------------------------------------------------------------
+# Kibana with ECK (automatically connects to Elasticsearch)
+# -----------------------------------------------------------------------------
+apiVersion: kibana.k8s.elastic.co/v1
+kind: Kibana
+metadata:
+  name: kibana-logging
+  namespace: efklog
+spec:
+  version: 8.12.2
+  count: 1
+  elasticsearchRef:
+    name: elasticsearch-logging
+  podTemplate:
+    spec:
+      containers:
+      - name: kibana
+        resources:
+          requests:
+            memory: 1Gi
+            cpu: 100m
+          limits:
+            memory: 1Gi
+            cpu: 1000m
