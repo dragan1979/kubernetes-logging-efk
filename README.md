@@ -38,3 +38,9 @@ Create the namespace and storage configuration.
 ```bash
 kubectl apply -f namespace.yaml
 kubectl apply -f storageClass.yaml
+kubectl apply -f elasticsearch.yaml
+kubectl apply -f kibanaService.yaml
+kubectl apply -f kibanaDeployment.yaml
+kubectl apply -f fluent-bit-RBAC.yaml
+kubectl apply -f fluent-bit-config.yaml
+kubectl apply -f fluent-bit-DaemonSet
