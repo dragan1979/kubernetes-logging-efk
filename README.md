@@ -13,11 +13,11 @@ The Operator manages the lifecycle of Elasticsearch and Kibana resources cluster
 
 * **Install Custom Resource Definitions (CRDs):** These teach your Kubernetes cluster what an Elasticsearch and Kibana resource looks like.
     ```bash
-    kubectl create -f [https://download.elastic.co/downloads/eck/3.2.0/crds.yaml](https://download.elastic.co/downloads/eck/3.2.0/crds.yaml)
+    kubectl create -f[https://download.elastic.co/downloads/eck/3.2.0/crds.yaml
     ```
 * **Install the Operator:** This deploys the actual Operator logic (the controller) into the `elastic-system` namespace.
     ```bash
-    kubectl apply -f [https://download.elastic.co/downloads/eck/3.2.0/operator.yaml](https://download.elastic.co/downloads/eck/3.2.0/operator.yaml)
+    kubectl apply -f https://download.elastic.co/downloads/eck/3.2.0/operator.yaml
     ```
 * **Verify Operator Status:** Wait until the Operator pod is running.
     ```bash
